@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- scenario.xml -->
+<scenario>
+    <!-- Phase 1: Initial Setup -->
+    <at t="0s">
+        <processing module="scenarioManager">
+            <info>========================================</info>
+            <info>LAP-DSR Simulation Started</info>
+            <info>========================================</info>
+        </processing>
+    </at>
+    
+    <at t="2s">
+        <processing module="scenarioManager">
+            <info>Node 0: Starting route discovery to host[49]</info>
+        </processing>
+    </at>
+
+    <!-- Phase 2: Activating Selfish Node -->
+    <at t="10s">
+        <set-param module="DYMONetwork.host[23].routing" par="isSelfish" value="true" />
+        <processing module="scenarioManager">
+            <info>Phase 2: Activated selfish mode on host[23]</info>
+        </processing>
+    </at>
+
+    <!-- Phase 3: Route Recovery -->
+    <at t="30s">
+        <set-param module="DYMONetwork.host[23].routing" par="isSelfish" value="false" />
+        <processing module="scenarioManager">
+            <info>Phase 3: Recovered host[23] back to normal</info>
+        </processing>
+    </at>
+
+    <!-- Phase 4: Network Stress Test (Multiple Selfish Nodes) -->
+    <at t="50s">
+        <set-param module="DYMONetwork.host[5].routing" par="isSelfish" value="true" />
+        <set-param module="DYMONetwork.host[15].routing" par="isSelfish" value="true" />
+        <set-param module="DYMONetwork.host[25].routing" par="isSelfish" value="true" />
+        <set-param module="DYMONetwork.host[35].routing" par="isSelfish" value="true" />
+        <processing module="scenarioManager">
+            <info>Phase 4: Activated selfish mode on hosts 5, 15, 25, 35</info>
+        </processing>
+    </at>
+
+    <!-- Phase 5: Final Recovery -->
+    <at t="70s">
+        <set-param module="DYMONetwork.host[5].routing" par="isSelfish" value="false" />
+        <set-param module="DYMONetwork.host[15].routing" par="isSelfish" value="false" />
+        <set-param module="DYMONetwork.host[25].routing" par="isSelfish" value="false" />
+        <set-param module="DYMONetwork.host[35].routing" par="isSelfish" value="false" />
+        <processing module="scenarioManager">
+            <info>Phase 5: Full network recovery - All nodes normal</info>
+        </processing>
+    </at>
+
+    <!-- Phase 6: Simulation End -->
+    <at t="90s">
+        <processing module="scenarioManager">
+            <info>========================================</info>
+            <info>Simulation ending - Collecting metrics</info>
+            <info>========================================</info>
+        </processing>
+    </at>
+</scenario>
