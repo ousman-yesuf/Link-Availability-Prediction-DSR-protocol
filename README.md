@@ -32,7 +32,7 @@ An advanced **OMNeT++** implementation of the Dynamic Source Routing (DSR) proto
 
 To build and run this simulation, ensure you have:
 
-- **OMNeT++** (Version 5.6+ or 6.x)
+- **OMNeT++** (Version 6.x)
 - **C++11** compliant compiler (GCC 7+, Clang, or MSVC)
 - Standard C++ Libraries (`<algorithm>`, `<cmath>`, `<fstream>`, `<iomanip>`, `<sstream>`)
 
